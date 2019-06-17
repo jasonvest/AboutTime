@@ -193,6 +193,7 @@
 				TargetAttributes = {
 					3A8AADC41DF9B85E00A2B931 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = TK56L29VNG;
 						ProvisioningStyle = Automatic;
 					};
 					3A8AADD81DF9B85E00A2B931 = {
@@ -430,11 +431,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TK56L29VNG;
 				INFOPLIST_FILE = SingleViewAppSwiftTemplate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.teamtreehouse.SingleViewAppSwiftTemplate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -442,11 +445,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TK56L29VNG;
 				INFOPLIST_FILE = SingleViewAppSwiftTemplate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.teamtreehouse.SingleViewAppSwiftTemplate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
