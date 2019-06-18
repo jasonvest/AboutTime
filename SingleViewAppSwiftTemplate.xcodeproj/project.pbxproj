@@ -14,6 +14,8 @@
 		3A8AADD31DF9B85E00A2B931 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A8AADD11DF9B85E00A2B931 /* LaunchScreen.storyboard */; };
 		3A8AADDE1DF9B85E00A2B931 /* SingleViewAppSwiftTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AADDD1DF9B85E00A2B931 /* SingleViewAppSwiftTemplateTests.swift */; };
 		3A8AADE91DF9B85E00A2B931 /* SingleViewAppSwiftTemplateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AADE81DF9B85E00A2B931 /* SingleViewAppSwiftTemplateUITests.swift */; };
+		3ECFC89122B84CE400F74644 /* WorldWarIIEvents.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3ECFC89022B84CE400F74644 /* WorldWarIIEvents.plist */; };
+		3ECFC89322B85E0200F74644 /* AboutTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECFC89222B85E0200F74644 /* AboutTime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		3A8AADE41DF9B85E00A2B931 /* SingleViewAppSwiftTemplateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SingleViewAppSwiftTemplateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8AADE81DF9B85E00A2B931 /* SingleViewAppSwiftTemplateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleViewAppSwiftTemplateUITests.swift; sourceTree = "<group>"; };
 		3A8AADEA1DF9B85E00A2B931 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3ECFC89022B84CE400F74644 /* WorldWarIIEvents.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WorldWarIIEvents.plist; sourceTree = "<group>"; };
+		3ECFC89222B85E0200F74644 /* AboutTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				3A8AADCF1DF9B85E00A2B931 /* Assets.xcassets */,
 				3A8AADD11DF9B85E00A2B931 /* LaunchScreen.storyboard */,
 				3A8AADD41DF9B85E00A2B931 /* Info.plist */,
+				3ECFC89022B84CE400F74644 /* WorldWarIIEvents.plist */,
+				3ECFC89222B85E0200F74644 /* AboutTime.swift */,
 			);
 			path = SingleViewAppSwiftTemplate;
 			sourceTree = "<group>";
@@ -234,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A8AADD31DF9B85E00A2B931 /* LaunchScreen.storyboard in Resources */,
+				3ECFC89122B84CE400F74644 /* WorldWarIIEvents.plist in Resources */,
 				3A8AADD01DF9B85E00A2B931 /* Assets.xcassets in Resources */,
 				3A8AADCE1DF9B85E00A2B931 /* Main.storyboard in Resources */,
 			);
@@ -261,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A8AADCB1DF9B85E00A2B931 /* ViewController.swift in Sources */,
+				3ECFC89322B85E0200F74644 /* AboutTime.swift in Sources */,
 				3A8AADC91DF9B85E00A2B931 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

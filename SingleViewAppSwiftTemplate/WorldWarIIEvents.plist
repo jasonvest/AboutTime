@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>1940</key>
+	<array>
+		<dict>
+			<key>event</key>
+			<string>Operation Dynamo: Allied Evacuation of Dunkirk</string>
+			<key>date</key>
+			<string>May 26, 1912 at 12:00:00 AM</string>
+		</dict>
+		<dict>
+			<key>event</key>
+			<string>Finland Signs Peace Treaty with Soviet Union</string>
+			<key>date</key>
+			<date>1912-03-12T08:00:00Z</date>
+		</dict>
+	</array>
+	<key>1939</key>
+	<array>
+		<dict>
+			<key>event</key>
+			<string>Soviet Union Attacks Finland</string>
+			<key>date</key>
+			<date>1939-11-30T08:00:00Z</date>
+		</dict>
+		<dict>
+			<key>event</key>
+			<string>U.S. Neutrality Act Passed</string>
+			<key>date</key>
+			<string>Nov 4, 1939 at 12:00:00 AM</string>
+		</dict>
+		<dict>
+			<key>event</key>
+			<string>Germans Launch First Air Attack on Britain at the Firth of Forth, Scotland</string>
+			<key>date</key>
+			<date>1939-10-16T08:00:00Z</date>
+		</dict>
+		<dict>
+			<key>event</key>
+			<string></string>
+			<key>date</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>event</key>
+			<string>Poland&apos;s Military Surrenders to Germany</string>
+			<key>date</key>
+			<date>1939-10-10T08:00:00Z</date>
+		</dict>
+		<dict>
+			<key>event</key>
+			<string>German-Soviet Frontier Treaty Signed</string>
+			<key>date</key>
+			<date>1939-09-28T08:00:00Z</date>
+		</dict>
+		<dict>
+			<key>event</key>
+			<string>German Submarine U-27 Sunk</string>
+			<key>date</key>
+			<string>Sep 20, 1939 at 12:00:00 AM</string>
+		</dict>
+		<dict>
+			<key>event</key>
+			<string>Soviet Union Invades Poland</string>
+			<key>date</key>
+			<date>1939-09-17T08:00:00Z</date>
+		</dict>
+		<dict>
+			<key>event</key>
+			<string>Sinking of the SS Athenia</string>
+			<key>date</key>
+			<date>1939-09-03T08:00:00Z</date>
+		</dict>
+		<dict>
+			<key>event</key>
+			<string>British National Registration Act</string>
+			<key>date</key>
+			<date>1939-09-07T08:00:00Z</date>
+		</dict>
+		<dict>
+			<key>event</key>
+			<string>Germany Invades Poland</string>
+			<key>date</key>
+			<date>1939-09-01T12:45:00Z</date>
+		</dict>
+	</array>
+</dict>
+</plist>
