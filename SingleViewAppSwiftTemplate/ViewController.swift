@@ -7,27 +7,40 @@
 //
 
 import UIKit
+import SafariServices
 
 class ViewController: UIViewController {
     @IBOutlet weak var firstEventLabel: UILabel!
     @IBOutlet weak var secondEventLabel: UILabel!
     @IBOutlet weak var thirdEventLabel: UILabel!
     @IBOutlet weak var fourthEventLabel: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var roundMessageLabel: UILabel!
     @IBOutlet weak var firstEventDownButton: UIButton!
     @IBOutlet weak var secondEventUpButton: UIButton!
     @IBOutlet weak var secondEventDownButton: UIButton!
     @IBOutlet weak var thirdEventUpButton: UIButton!
     @IBOutlet weak var thirdEventDownButton: UIButton!
     @IBOutlet weak var fourthEventUpButton: UIButton!
+    @IBOutlet weak var nextRoundButton: UIButton!
+    @IBOutlet weak var finalScoreLabel: UILabel!
+    @IBOutlet weak var playAgainButton: UIButton!
     
     
     let numberOfRounds = 6
     let numberOfEvents = 4
-    let roundLength = 60
-    let quizManager: QuizManager
+    let roundLength = 59
+    var quizManager: QuizManager
+    var roundTimer: Timer!
     
     override var preferredStatusBarStyle: UIStatusBarStyle  {
         return .lightContent
+    }
+    
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake   {
+            completeRound(timeUp: false)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -46,12 +59,24 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        //Populate labels with initial set of events
-        populateLables()
-        
+        //Researched on Stack Overflow
+        let touch = UITapGestureRecognizer(target: self, action: #selector(touchFunction))
+        let labels = labelArray()
+        for label in labels {
+            label.addGestureRecognizer(touch)
+        }
+        //Start first round of game
+        startGameRound()
     }
-
+    
+    @objc func touchFunction(sender: UITapGestureRecognizer, infoURL: String)    {
+        guard let url =  URL(string: infoURL) else  {
+            return
+        }
+        let safariVC = SFSafariViewController(url: url)
+        self.present(safariVC, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -81,6 +106,99 @@ class ViewController: UIViewController {
         }
     }
     
+    //Format time into the number of seconds
+    func formatTimeDisplay(_ totalSeconds: Int) -> String    {
+        let seconds: Int = totalSeconds % 60
+        let results = String(format: "0:%02d", seconds)
+        return results
+    }
+    
+    //Update the countdown time displayed and the progress indicator
+    @objc func updateTimerDisplay() -> Void   {
+        timerLabel.text = "\(formatTimeDisplay(self.quizManager.roundLength))"
+        if self.quizManager.roundLength != 0  {
+            self.quizManager.roundLength -= 1
+        } else  {
+            stopTimer()
+            completeRound(timeUp: true)
+        }
+    }
+    
+    //Stop the timer
+    func stopTimer() -> Void {
+        self.roundTimer.invalidate()
+    }
+    
+    func completeRound(timeUp: Bool) -> Void  {
+        let eventsAreInOrder = quizManager.checkAnswer()
+        timerLabel.isHidden = true
+        timerLabel.text = "0:59"
+        
+        if eventsAreInOrder {
+            nextRoundButton.setImage(UIImage(named: "next_round_success.png"), for: .normal)
+        } else  {
+            nextRoundButton.setImage(UIImage(named: "next_round_fail.png"), for: .normal)
+        }
+        if !timeUp  {
+            stopTimer()
+        }
+        self.quizManager.roundLength = roundLength
+        self.quizManager.getRandomEvents()
+        nextRoundButton.isHidden = false
+        
+        roundMessageLabel.text = "Tap events to learn more"
+    }
+    
+    
+    func startGameRound() -> Void   {
+        let labels = labelArray()
+        let buttons = buttonArray()
+        
+        for label in labels  {
+            label.isHidden = false
+        }
+        for button in buttons   {
+            button.isHidden = false
+        }
+        finalScoreLabel.isHidden = true
+        playAgainButton.isHidden = true
+        
+        if self.quizManager.isGameComplete()  {
+            //Call end of game function
+            endOfGame()
+        } else  {
+            populateLables()
+            roundTimer = Timer.scheduledTimer(timeInterval: 1,
+                                              target: self,
+                                              selector: #selector(updateTimerDisplay),
+                                              userInfo: nil,
+                                              repeats: true)
+            roundMessageLabel.text = "Shake to complete"
+            roundMessageLabel.isHidden = false
+            nextRoundButton.isHidden = true
+            timerLabel.isHidden = false
+        }
+    }
+    
+    func endOfGame() -> Void    {
+        let labels = labelArray()
+        let buttons = buttonArray()
+        
+        for label in labels  {
+            label.isHidden = true
+        }
+        for button in buttons   {
+            button.isHidden = true
+        }
+        timerLabel.isHidden = true
+        nextRoundButton.isHidden = true
+        roundMessageLabel.isHidden = true
+        
+        finalScoreLabel.text = "\(quizManager.numberOfCorrectRounds)/\(quizManager.numberOfRounds)"
+        finalScoreLabel.isHidden = false
+        playAgainButton.isHidden = false
+    }
+    
     @IBAction func reorderEvents(_ sender: UIButton) {
         var firstPosition: Int = 0
         var secondPosition: Int = 0
@@ -104,10 +222,21 @@ class ViewController: UIViewController {
             secondPosition = 2
         }
         if firstPosition != secondPosition  {
-            quizManager.changeEventOrder(firstPosition: firstPosition, secondPostion: secondPosition)
+            self.quizManager.changeEventOrder(firstPosition: firstPosition, secondPostion: secondPosition)
             populateLables()
         }
     }
+    
+    @IBAction func nextRound(_ sender: UIButton) {
+        startGameRound()
+    }
+    
+    @IBAction func playAgain(_ sender: UIButton) {
+        quizManager.resetGame()
+        startGameRound()
+    }
+    
+    
     
     
     @IBAction func buttonPressed(_ sender: UIButton) {
@@ -121,6 +250,5 @@ class ViewController: UIViewController {
             sender.setImage(UIImage(named: "up_full_selected.png"), for: .highlighted)
         }
     }
-    
 }
 
