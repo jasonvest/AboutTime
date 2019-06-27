@@ -13,10 +13,7 @@ enum EventGroup: String {
     case WorldWarIIEvents
 }
 
-enum EventSelection: String {
-    case event
-    case date
-}
+
 
 enum EventError: Error  {
     case invalidResource
@@ -72,7 +69,6 @@ class PlistConverter    {
 class EventLoader   {
     static func quizEvents(fromDictionary dictionary: [String : AnyObject]) throws -> [HistoricalEvent] {
         var eventsList: [HistoricalEvent] = []
-        
         for (_, value) in dictionary  {
             if let eventDictionary = value as? [String : Any], let eventDescription = eventDictionary["event"] as? String, let eventDate = eventDictionary["date"] as? Date, let eventURL = eventDictionary["url"] as? String {
                 let event = Event(eventDescription: eventDescription, eventDate: eventDate, eventURL: eventURL)
@@ -86,14 +82,12 @@ class EventLoader   {
 
 class WorldWarIIQuiz: TimelineQuiz  {
     var events: [HistoricalEvent]
-    
     init(events: [HistoricalEvent]) {
         self.events = events
     }
 }
 
 class WorldWarIIQuizManager: QuizManager    {
-    
     var numberOfRounds: Int
     var roundsUsed: Int = 0
     var numberOfEvents: Int

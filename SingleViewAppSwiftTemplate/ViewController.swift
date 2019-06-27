@@ -59,17 +59,34 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        //Researched on Stack Overflow
-        let touch = UITapGestureRecognizer(target: self, action: #selector(touchFunction))
-        let labels = labelArray()
-        for label in labels {
-            label.addGestureRecognizer(touch)
-        }
-        //Start first round of game
+        addLabelGestures()
         startGameRound()
     }
     
-    @objc func touchFunction(sender: UITapGestureRecognizer, infoURL: String)    {
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func addLabelGestures() {
+        let labels = labelArray()
+        for label in labels {
+            //Researched on Stack Overflow
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(touchFunction))
+            label.addGestureRecognizer(gesture)
+        }
+    }
+    
+    @objc func touchFunction(sender: UITapGestureRecognizer)    {
+        let labels = labelArray()
+        var infoURL: String = ""
+        
+        for index in 0..<labels.count   {
+            if sender.view === labels[index]    {
+                infoURL = quizManager.eventSet[index].eventURL
+            }
+        }
         guard let url =  URL(string: infoURL) else  {
             return
         }
@@ -77,10 +94,6 @@ class ViewController: UIViewController {
         self.present(safariVC, animated: true, completion: nil)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     func labelArray() -> [UILabel]  {
         let labelSet: [UILabel] = [firstEventLabel,
@@ -103,6 +116,13 @@ class ViewController: UIViewController {
         let labelSet = labelArray()
         for index in 0..<labelSet.count   {
             labelSet[index].text = quizManager.eventSet[index].eventDescription
+        }
+    }
+    
+    func enableGestures(onLabels: Bool) -> Void {
+        let labels = labelArray()
+        for label in labels {
+            label.isUserInteractionEnabled = onLabels
         }
     }
     
@@ -142,13 +162,10 @@ class ViewController: UIViewController {
         if !timeUp  {
             stopTimer()
         }
-        self.quizManager.roundLength = roundLength
-        self.quizManager.getRandomEvents()
         nextRoundButton.isHidden = false
-        
+        enableGestures(onLabels: true)
         roundMessageLabel.text = "Tap events to learn more"
     }
-    
     
     func startGameRound() -> Void   {
         let labels = labelArray()
@@ -160,6 +177,7 @@ class ViewController: UIViewController {
         for button in buttons   {
             button.isHidden = false
         }
+        enableGestures(onLabels: false)
         finalScoreLabel.isHidden = true
         playAgainButton.isHidden = true
         
@@ -167,6 +185,8 @@ class ViewController: UIViewController {
             //Call end of game function
             endOfGame()
         } else  {
+            self.quizManager.roundLength = roundLength
+            self.quizManager.getRandomEvents()
             populateLables()
             roundTimer = Timer.scheduledTimer(timeInterval: 1,
                                               target: self,
@@ -235,9 +255,6 @@ class ViewController: UIViewController {
         quizManager.resetGame()
         startGameRound()
     }
-    
-    
-    
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         if sender === firstEventDownButton  {
