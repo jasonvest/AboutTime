@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     let numberOfRounds = 6
     let numberOfEvents = 4
     let roundLength = 59
-    var quizManager: QuizManager
+    let quizManager: QuizManager
     var roundTimer: Timer!
     
     override var preferredStatusBarStyle: UIStatusBarStyle  {
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        addLabelGestures()
+        addLabelGestures(toLabels: eventLabelArray())
         startGameRound()
     }
     
@@ -68,9 +68,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: Helper Functions
     
-    func addLabelGestures() {
-        let labels = labelArray()
+    //Adds gesture functionality to the event labels
+    func addLabelGestures(toLabels labels: [UILabel]) {
         for label in labels {
             //Researched on Stack Overflow
             let gesture = UITapGestureRecognizer(target: self, action: #selector(touchFunction))
@@ -78,8 +79,9 @@ class ViewController: UIViewController {
         }
     }
     
+    //Function called by the gesture recognizer, identifies gesture and assigns the correc URL
     @objc func touchFunction(sender: UITapGestureRecognizer)    {
-        let labels = labelArray()
+        let labels = eventLabelArray()
         var infoURL: String = ""
         
         for index in 0..<labels.count   {
@@ -94,8 +96,8 @@ class ViewController: UIViewController {
         self.present(safariVC, animated: true, completion: nil)
     }
     
-
-    func labelArray() -> [UILabel]  {
+    //Returns an array of event labels
+    func eventLabelArray() -> [UILabel]  {
         let labelSet: [UILabel] = [firstEventLabel,
                                    secondEventLabel,
                                    thirdEventLabel,
@@ -103,7 +105,8 @@ class ViewController: UIViewController {
         return labelSet
     }
     
-    func buttonArray() -> [UIButton]  {
+    //Return array of the event mover buttons
+    func eventButtonArray() -> [UIButton]  {
         let buttonSet: [UIButton] = [firstEventDownButton,
                                      secondEventUpButton,
                                      secondEventDownButton,
@@ -112,17 +115,19 @@ class ViewController: UIViewController {
                                      fourthEventUpButton]
         return buttonSet
     }
+    
+    //Update labels with events
     func populateLables() -> Void   {
-        let labelSet = labelArray()
+        let labelSet = eventLabelArray()
         for index in 0..<labelSet.count   {
             labelSet[index].text = quizManager.eventSet[index].eventDescription
         }
     }
     
-    func enableGestures(onLabels: Bool) -> Void {
-        let labels = labelArray()
+    func enableGestures(isEnabled: Bool) -> Void {
+        let labels = eventLabelArray()
         for label in labels {
-            label.isUserInteractionEnabled = onLabels
+            label.isUserInteractionEnabled = isEnabled
         }
     }
     
@@ -137,7 +142,7 @@ class ViewController: UIViewController {
     @objc func updateTimerDisplay() -> Void   {
         timerLabel.text = "\(formatTimeDisplay(self.quizManager.roundLength))"
         if self.quizManager.roundLength != 0  {
-            self.quizManager.roundLength -= 1
+            quizManager.adjustCounter(decreaseBy: 1, isReset: false, roundLength: roundLength)
         } else  {
             stopTimer()
             completeRound(timeUp: true)
@@ -149,11 +154,13 @@ class ViewController: UIViewController {
         self.roundTimer.invalidate()
     }
     
+    //Function called when either the device is shaked or time runs out indicating the round is over
     func completeRound(timeUp: Bool) -> Void  {
         let eventsAreInOrder = quizManager.checkAnswer()
         timerLabel.isHidden = true
         timerLabel.text = "0:59"
         
+        //Displays correct button based on success or failure
         if eventsAreInOrder {
             nextRoundButton.setImage(UIImage(named: "next_round_success.png"), for: .normal)
         } else  {
@@ -162,14 +169,16 @@ class ViewController: UIViewController {
         if !timeUp  {
             stopTimer()
         }
+        //Updates UI elements and enables gestures on the event labels to call up wikipedia pages
         nextRoundButton.isHidden = false
-        enableGestures(onLabels: true)
+        enableGestures(isEnabled: true)
         roundMessageLabel.text = "Tap events to learn more"
     }
     
+    ///Starts a round of the game and checks to see if the game is over before presenting the questions
     func startGameRound() -> Void   {
-        let labels = labelArray()
-        let buttons = buttonArray()
+        let labels = eventLabelArray()
+        let buttons = eventButtonArray()
         
         for label in labels  {
             label.isHidden = false
@@ -177,7 +186,7 @@ class ViewController: UIViewController {
         for button in buttons   {
             button.isHidden = false
         }
-        enableGestures(onLabels: false)
+        enableGestures(isEnabled: false)
         finalScoreLabel.isHidden = true
         playAgainButton.isHidden = true
         
@@ -185,7 +194,7 @@ class ViewController: UIViewController {
             //Call end of game function
             endOfGame()
         } else  {
-            self.quizManager.roundLength = roundLength
+            quizManager.adjustCounter(decreaseBy: 0, isReset: true, roundLength: roundLength)
             self.quizManager.getRandomEvents()
             populateLables()
             roundTimer = Timer.scheduledTimer(timeInterval: 1,
@@ -200,9 +209,10 @@ class ViewController: UIViewController {
         }
     }
     
+    ///Function called when the game is complete, updates UI to display score and play again button
     func endOfGame() -> Void    {
-        let labels = labelArray()
-        let buttons = buttonArray()
+        let labels = eventLabelArray()
+        let buttons = eventButtonArray()
         
         for label in labels  {
             label.isHidden = true
@@ -218,7 +228,7 @@ class ViewController: UIViewController {
         finalScoreLabel.isHidden = false
         playAgainButton.isHidden = false
     }
-    
+    ///Calls reoorder function based on UI input and updates UI when complete
     @IBAction func reorderEvents(_ sender: UIButton) {
         var firstPosition: Int = 0
         var secondPosition: Int = 0
@@ -247,15 +257,18 @@ class ViewController: UIViewController {
         }
     }
     
+    ///Starts another round of the game
     @IBAction func nextRound(_ sender: UIButton) {
         startGameRound()
     }
     
+    ///Calls reset game function and starts another round
     @IBAction func playAgain(_ sender: UIButton) {
         quizManager.resetGame()
         startGameRound()
     }
     
+    ///Updates button UI based on when the button is pressed
     @IBAction func buttonPressed(_ sender: UIButton) {
         if sender === firstEventDownButton  {
             sender.setImage(UIImage(named: "down_full_selected.png"), for: .highlighted)

@@ -9,27 +9,30 @@
 import Foundation
 import GameKit
 
+///Enum setting up a group for the trivia questions, allows for the introduction of other trivia groupings
 enum EventGroup: String {
     case WorldWarIIEvents
 }
 
-
-
+///Enum containing possible error conditions
 enum EventError: Error  {
     case invalidResource
     case conversionError
 }
 
+///Protocol for the Historical Event struct
 protocol HistoricalEvent {
     var eventDescription: String { get }
     var eventDate: Date { get }
     var eventURL: String { get }
 }
 
+///Protocol for a timeline quiz
 protocol TimelineQuiz   {
     var events: [HistoricalEvent] { get set }
 }
 
+///Protocol for the quiz manager
 protocol QuizManager    {
     var numberOfRounds: Int { get set }
     var roundsUsed: Int { get set }
@@ -42,18 +45,20 @@ protocol QuizManager    {
     init(numberOfRounds: Int, numberOfEvents: Int, roundLength: Int, events: [HistoricalEvent])
     func isGameComplete() -> Bool
     func resetGame() -> Void
+    func adjustCounter(decreaseBy: Int, isReset: Bool, roundLength: Int) -> Void
     func checkAnswer() -> Bool
     func getRandomEvents() -> Void
     func changeEventOrder(firstPosition: Int, secondPostion: Int) -> Void
-    
 }
 
+///Struct for modeling Historical Event data
 struct Event: HistoricalEvent    {
     let eventDescription: String
     let eventDate: Date
     let eventURL: String
 }
 
+///Helper class to conver the plist data
 class PlistConverter    {
     static func dictionary(fromFile name: String, ofType type: String) throws -> [String : AnyObject]    {
         guard let path = Bundle.main.path(forResource: name, ofType: type) else {
@@ -66,6 +71,7 @@ class PlistConverter    {
     }
 }
 
+///Helper class that loads the data from the plist
 class EventLoader   {
     static func quizEvents(fromDictionary dictionary: [String : AnyObject]) throws -> [HistoricalEvent] {
         var eventsList: [HistoricalEvent] = []
@@ -80,6 +86,7 @@ class EventLoader   {
     }
 }
 
+///Quiz class to hold the events
 class WorldWarIIQuiz: TimelineQuiz  {
     var events: [HistoricalEvent]
     init(events: [HistoricalEvent]) {
@@ -87,6 +94,7 @@ class WorldWarIIQuiz: TimelineQuiz  {
     }
 }
 
+///Quiz manager class
 class WorldWarIIQuizManager: QuizManager    {
     var numberOfRounds: Int
     var roundsUsed: Int = 0
@@ -104,6 +112,7 @@ class WorldWarIIQuizManager: QuizManager    {
         self.getRandomEvents()
     }
     
+    ///Checks to see if game is complete
     func isGameComplete() -> Bool  {
         if self.roundsUsed == self.numberOfRounds  {
             return true
@@ -112,12 +121,24 @@ class WorldWarIIQuizManager: QuizManager    {
         }
     }
     
+    ///Resets game properties for another game
     func resetGame() {
         self.roundsUsed = 0
         self.numberOfCorrectRounds = 0
         self.getRandomEvents()
     }
     
+    ///Decreases or resets round length
+    func adjustCounter(decreaseBy: Int, isReset: Bool, roundLength: Int = 59) -> Void  {
+        if !isReset {
+            self.roundLength -= decreaseBy
+        } else  {
+            self.roundLength = roundLength
+        }
+        
+    }
+    
+    ///Checks the order of events to ensure they are in chronological order
     func checkAnswer() -> Bool {
         var eventsInChronOrder: Bool = true
         var eventDate: Date = self.eventSet[0].eventDate
@@ -135,6 +156,7 @@ class WorldWarIIQuizManager: QuizManager    {
         return eventsInChronOrder
     }
     
+    ///Gets random set of 4 events and ensures they are not duplicated within a round
     func getRandomEvents() -> Void  {
         var questionsUsed: [Int] = []
         self.eventSet = []
@@ -147,6 +169,7 @@ class WorldWarIIQuizManager: QuizManager    {
         } while self.eventSet.count < self.numberOfEvents
     }
     
+    ///Swaps event order based on interaction with UI
     func changeEventOrder(firstPosition: Int, secondPostion: Int) {
         self.eventSet.swapAt(firstPosition, secondPostion)
     }
