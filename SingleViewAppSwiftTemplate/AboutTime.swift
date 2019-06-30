@@ -8,8 +8,9 @@
 
 import Foundation
 import GameKit
+import AudioToolbox
 
-///Enum setting up a group for the trivia questions, allows for the introduction of other trivia groupings
+///Enum setting up a group for the trivia questions, allows for the introduction of other trivia files
 enum EventGroup: String {
     case WorldWarIIEvents
 }
@@ -18,6 +19,7 @@ enum EventGroup: String {
 enum EventError: Error  {
     case invalidResource
     case conversionError
+    case invalidURL
 }
 
 ///Protocol for the Historical Event struct
@@ -93,6 +95,37 @@ class WorldWarIIQuiz: TimelineQuiz  {
         self.events = events
     }
 }
+
+///SoundManager struct
+struct SoundManager {
+    var wrongSound: SystemSoundID = 0
+    var correctSound: SystemSoundID = 0
+    var perfectGameSound: SystemSoundID = 0
+    var wompSound: SystemSoundID = 0
+    
+    init() {
+        let pathWrongSound = Bundle.main.path(forResource: "WrongSound", ofType: "wav")
+        let soundUrlWrongSound = URL(fileURLWithPath: pathWrongSound!)
+        AudioServicesCreateSystemSoundID(soundUrlWrongSound as CFURL, &wrongSound)
+        
+        let pathCorrectSound = Bundle.main.path(forResource: "CorrectSound", ofType: "wav")
+        let soundUrlCorrectSound = URL(fileURLWithPath: pathCorrectSound!)
+        AudioServicesCreateSystemSoundID(soundUrlCorrectSound as CFURL, &correctSound)
+        
+        let pathPerfectGameSound = Bundle.main.path(forResource: "PerfectGameSound", ofType: "wav")
+        let soundUrlPerfectGameSound = URL(fileURLWithPath: pathPerfectGameSound!)
+        AudioServicesCreateSystemSoundID(soundUrlPerfectGameSound as CFURL, &perfectGameSound)
+        
+        let pathWompSound = Bundle.main.path(forResource: "WompSound", ofType: "wav")
+        let soundUrlWompSound = URL(fileURLWithPath: pathWompSound!)
+        AudioServicesCreateSystemSoundID(soundUrlWompSound as CFURL, &wompSound)
+    }
+    //Play the requested sound
+    func playSelectedSound(_ sound: SystemSoundID) -> Void {
+        AudioServicesPlaySystemSound(sound)
+    }
+}
+
 
 ///Quiz manager class
 class WorldWarIIQuizManager: QuizManager    {
