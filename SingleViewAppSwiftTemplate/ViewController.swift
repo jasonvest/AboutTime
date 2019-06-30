@@ -214,6 +214,7 @@ class ViewController: UIViewController, GameOverProtocol {
             timerLabel.isHidden = false
         }
     }
+    
     ///Function called when the game is complete, updates UI to display score and play again button
     func endOfGame() -> Void    {
         let scorePercentage = Double(quizManager.numberOfCorrectRounds)/Double(quizManager.numberOfRounds)
@@ -231,6 +232,7 @@ class ViewController: UIViewController, GameOverProtocol {
         }
         performSegue(withIdentifier: "finalScore", sender: nil)
     }
+    
     ///Calls reoorder function based on UI input and updates UI when complete
     @IBAction func reorderEvents(_ sender: UIButton) {
         var firstPosition: Int = 0
