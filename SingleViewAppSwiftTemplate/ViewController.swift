@@ -75,14 +75,14 @@ class ViewController: UIViewController, GameOverProtocol {
     
     //MARK: Helper Functions
     
-    //Function to setup segue for final score
+    //Function to setup segue for final score - Researched on developer.apple.com
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? FinalScoreController {
             destination.delegate = self
         }
     }
     
-    //Adds gesture functionality to the event labels
+    //Adds gesture functionality to the event labels - Researched on StackOverflow
     func addLabelGestures(toLabels labels: [UILabel]) {
         for label in labels {
             //Researched on Stack Overflow
@@ -230,6 +230,7 @@ class ViewController: UIViewController, GameOverProtocol {
         default:
             break
         }
+        //Researched on developer.apple.com
         performSegue(withIdentifier: "finalScore", sender: nil)
     }
     
