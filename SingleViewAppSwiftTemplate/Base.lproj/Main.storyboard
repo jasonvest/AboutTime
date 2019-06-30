@@ -160,7 +160,7 @@
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shake to complete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FwF-tW-r37">
                                 <rect key="frame" x="46.5" y="626" width="282" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="282" id="Bkl-EY-qsC"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="282" id="Bkl-EY-qsC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.058945556264987757" green="0.65122842234529754" blue="0.80880686145751302" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
