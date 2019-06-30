@@ -31,7 +31,7 @@ class ViewController: UIViewController, GameOverProtocol {
 
     
     
-    let numberOfRounds = 1
+    let numberOfRounds = 6
     let numberOfEvents = 4
     let roundLength = 59
     let quizManager: QuizManager
