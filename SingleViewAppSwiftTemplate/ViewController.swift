@@ -37,6 +37,7 @@ class ViewController: UIViewController, GameOverProtocol {
     let roundLength = 59
     let quizManager: QuizManager
     var roundTimer: Timer!
+    let soundManager = SoundManager()
     
     override var preferredStatusBarStyle: UIStatusBarStyle  {
         return .lightContent
@@ -187,8 +188,10 @@ class ViewController: UIViewController, GameOverProtocol {
         //Displays correct button based on success or failure
         if eventsAreInOrder {
             nextRoundButton.setImage(UIImage(named: "next_round_success.png"), for: .normal)
+            soundManager.playSelectedSound(soundManager.correctSound)
         } else  {
             nextRoundButton.setImage(UIImage(named: "next_round_fail.png"), for: .normal)
+            soundManager.playSelectedSound(soundManager.wrongSound)
         }
         if !timeUp  {
             stopTimer()
@@ -217,7 +220,7 @@ class ViewController: UIViewController, GameOverProtocol {
         
         if self.quizManager.isGameComplete()  {
             //Call end of game function
-            performSegue(withIdentifier: "finalScore", sender: nil)
+            endOfGame()
         } else  {
             quizManager.adjustCounter(decreaseBy: 0, isReset: true, roundLength: roundLength)
             self.quizManager.getRandomEvents()
@@ -233,11 +236,23 @@ class ViewController: UIViewController, GameOverProtocol {
             timerLabel.isHidden = false
         }
     }
-    /*
     ///Function called when the game is complete, updates UI to display score and play again button
     func endOfGame() -> Void    {
-        
-    }*/
+        let scorePercentage = Double(quizManager.numberOfCorrectRounds)/Double(quizManager.numberOfRounds)
+        switch scorePercentage  {
+        case 1.0:
+            soundManager.playSelectedSound(soundManager.perfectGameSound)
+        case 0.75..<100.0:
+            soundManager.playSelectedSound(soundManager.perfectGameSound)
+        case 0.50..<0.75:
+            soundManager.playSelectedSound(soundManager.wompSound)
+        case 0.00..<0.50:
+            soundManager.playSelectedSound(soundManager.wompSound)
+        default:
+            break
+        }
+        performSegue(withIdentifier: "finalScore", sender: nil)
+    }
 
     ///Calls reoorder function based on UI input and updates UI when complete
     @IBAction func reorderEvents(_ sender: UIButton) {

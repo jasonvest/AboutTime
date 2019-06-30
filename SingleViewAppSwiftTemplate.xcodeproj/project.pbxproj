@@ -15,6 +15,10 @@
 		3A8AADDE1DF9B85E00A2B931 /* SingleViewAppSwiftTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AADDD1DF9B85E00A2B931 /* SingleViewAppSwiftTemplateTests.swift */; };
 		3A8AADE91DF9B85E00A2B931 /* SingleViewAppSwiftTemplateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AADE81DF9B85E00A2B931 /* SingleViewAppSwiftTemplateUITests.swift */; };
 		3E35EA7A22C7C1FE00F0B32F /* FinalScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35EA7922C7C1FE00F0B32F /* FinalScoreController.swift */; };
+		3E35EA7C22C9064E00F0B32F /* IncorrectBuzz.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E35EA7B22C9064E00F0B32F /* IncorrectBuzz.wav */; };
+		3E35EA7E22C9066E00F0B32F /* CorrectDing.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E35EA7D22C9066E00F0B32F /* CorrectDing.wav */; };
+		3E35EA8022C9068000F0B32F /* WompSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E35EA7F22C9068000F0B32F /* WompSound.wav */; };
+		3E35EA8222C9068A00F0B32F /* PerfectGameSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E35EA8122C9068A00F0B32F /* PerfectGameSound.wav */; };
 		3ECFC89122B84CE400F74644 /* WorldWarIIEvents.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3ECFC89022B84CE400F74644 /* WorldWarIIEvents.plist */; };
 		3ECFC89322B85E0200F74644 /* AboutTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECFC89222B85E0200F74644 /* AboutTime.swift */; };
 /* End PBXBuildFile section */
@@ -51,6 +55,10 @@
 		3A8AADE81DF9B85E00A2B931 /* SingleViewAppSwiftTemplateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleViewAppSwiftTemplateUITests.swift; sourceTree = "<group>"; };
 		3A8AADEA1DF9B85E00A2B931 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E35EA7922C7C1FE00F0B32F /* FinalScoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalScoreController.swift; sourceTree = "<group>"; };
+		3E35EA7B22C9064E00F0B32F /* IncorrectBuzz.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = IncorrectBuzz.wav; sourceTree = "<group>"; };
+		3E35EA7D22C9066E00F0B32F /* CorrectDing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CorrectDing.wav; sourceTree = "<group>"; };
+		3E35EA7F22C9068000F0B32F /* WompSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WompSound.wav; sourceTree = "<group>"; };
+		3E35EA8122C9068A00F0B32F /* PerfectGameSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PerfectGameSound.wav; sourceTree = "<group>"; };
 		3ECFC89022B84CE400F74644 /* WorldWarIIEvents.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WorldWarIIEvents.plist; sourceTree = "<group>"; };
 		3ECFC89222B85E0200F74644 /* AboutTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,15 +111,19 @@
 		3A8AADC71DF9B85E00A2B931 /* SingleViewAppSwiftTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3E35EA7F22C9068000F0B32F /* WompSound.wav */,
+				3E35EA8122C9068A00F0B32F /* PerfectGameSound.wav */,
 				3A8AADC81DF9B85E00A2B931 /* AppDelegate.swift */,
 				3A8AADCA1DF9B85E00A2B931 /* ViewController.swift */,
 				3A8AADCC1DF9B85E00A2B931 /* Main.storyboard */,
 				3A8AADCF1DF9B85E00A2B931 /* Assets.xcassets */,
 				3A8AADD11DF9B85E00A2B931 /* LaunchScreen.storyboard */,
+				3E35EA7D22C9066E00F0B32F /* CorrectDing.wav */,
 				3A8AADD41DF9B85E00A2B931 /* Info.plist */,
 				3ECFC89022B84CE400F74644 /* WorldWarIIEvents.plist */,
 				3ECFC89222B85E0200F74644 /* AboutTime.swift */,
 				3E35EA7922C7C1FE00F0B32F /* FinalScoreController.swift */,
+				3E35EA7B22C9064E00F0B32F /* IncorrectBuzz.wav */,
 			);
 			path = SingleViewAppSwiftTemplate;
 			sourceTree = "<group>";
@@ -243,6 +255,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A8AADD31DF9B85E00A2B931 /* LaunchScreen.storyboard in Resources */,
+				3E35EA8022C9068000F0B32F /* WompSound.wav in Resources */,
+				3E35EA7E22C9066E00F0B32F /* CorrectDing.wav in Resources */,
+				3E35EA7C22C9064E00F0B32F /* IncorrectBuzz.wav in Resources */,
+				3E35EA8222C9068A00F0B32F /* PerfectGameSound.wav in Resources */,
 				3ECFC89122B84CE400F74644 /* WorldWarIIEvents.plist in Resources */,
 				3A8AADD01DF9B85E00A2B931 /* Assets.xcassets in Resources */,
 				3A8AADCE1DF9B85E00A2B931 /* Main.storyboard in Resources */,
