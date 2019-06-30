@@ -28,8 +28,7 @@ class ViewController: UIViewController, GameOverProtocol {
     @IBOutlet weak var thirdEventDownButton: UIButton!
     @IBOutlet weak var fourthEventUpButton: UIButton!
     @IBOutlet weak var nextRoundButton: UIButton!
-    @IBOutlet weak var finalScoreLabel: UILabel!
-    @IBOutlet weak var playAgainButton: UIButton!
+
     
     
     let numberOfRounds = 1
@@ -118,17 +117,6 @@ class ViewController: UIViewController, GameOverProtocol {
         return labelSet
     }
     
-    //Return array of the event mover buttons
-    func eventButtonArray() -> [UIButton]  {
-        let buttonSet: [UIButton] = [firstEventDownButton,
-                                     secondEventUpButton,
-                                     secondEventDownButton,
-                                     thirdEventUpButton,
-                                     thirdEventDownButton,
-                                     fourthEventUpButton]
-        return buttonSet
-    }
-    
     //Update labels with events
     func populateLables() -> Void   {
         let labelSet = eventLabelArray()
@@ -204,20 +192,10 @@ class ViewController: UIViewController, GameOverProtocol {
     
     ///Starts a round of the game and checks to see if the game is over before presenting the questions
     func startGameRound() -> Void   {
-        /*
-        let labels = eventLabelArray()
-        let buttons = eventButtonArray()
-        
-        for label in labels  {
-            label.isHidden = false
-        }
-        for button in buttons   {
-            button.isHidden = false
-        }*/
+        //Disable gestures during the round
         enableGestures(isEnabled: false)
- //       finalScoreLabel.isHidden = true
-  //      playAgainButton.isHidden = true
         
+        //Check to see if the game is complete or the round should be started
         if self.quizManager.isGameComplete()  {
             //Call end of game function
             endOfGame()
@@ -253,7 +231,6 @@ class ViewController: UIViewController, GameOverProtocol {
         }
         performSegue(withIdentifier: "finalScore", sender: nil)
     }
-
     ///Calls reoorder function based on UI input and updates UI when complete
     @IBAction func reorderEvents(_ sender: UIButton) {
         var firstPosition: Int = 0
@@ -285,12 +262,6 @@ class ViewController: UIViewController, GameOverProtocol {
     
     ///Starts another round of the game
     @IBAction func nextRound(_ sender: UIButton) {
-        startGameRound()
-    }
-    
-    ///Calls reset game function and starts another round
-    @IBAction func playAgain(_ sender: UIButton) {
-        quizManager.resetGame()
         startGameRound()
     }
     
