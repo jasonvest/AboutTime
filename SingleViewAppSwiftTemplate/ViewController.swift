@@ -15,10 +15,7 @@ protocol GameOverProtocol {
 }
 
 class ViewController: UIViewController, GameOverProtocol {
-    @IBOutlet weak var firstEventLabel: UILabel!
-    @IBOutlet weak var secondEventLabel: UILabel!
-    @IBOutlet weak var thirdEventLabel: UILabel!
-    @IBOutlet weak var fourthEventLabel: UILabel!
+    @IBOutlet var eventButtons: [UIButton]!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var roundMessageLabel: UILabel!
     @IBOutlet weak var firstEventDownButton: UIButton!
@@ -29,14 +26,13 @@ class ViewController: UIViewController, GameOverProtocol {
     @IBOutlet weak var fourthEventUpButton: UIButton!
     @IBOutlet weak var nextRoundButton: UIButton!
 
-    
-    
     let numberOfRounds = 6
     let numberOfEvents = 4
     let roundLength = 59
     let quizManager: QuizManager
     var roundTimer: Timer!
     let soundManager = SoundManager()
+
     
     override var preferredStatusBarStyle: UIStatusBarStyle  {
         return .lightContent
@@ -44,7 +40,7 @@ class ViewController: UIViewController, GameOverProtocol {
     
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake   {
-            completeRound(timeUp: false)
+            completeRound(isTimeUp: false)
         }
     }
     
@@ -53,6 +49,8 @@ class ViewController: UIViewController, GameOverProtocol {
             let dictionary = try PlistConverter.dictionary(fromFile: EventGroup.WorldWarIIEvents.rawValue, ofType: "plist")
             
             let eventsList = try EventLoader.quizEvents(fromDictionary: dictionary)
+            
+           // try Test.quizEvents(fromFile: EventGroup.WorldWarIIEvents.rawValue, ofType: "plist")
             
             self.quizManager = WorldWarIIQuizManager.init(numberOfRounds: numberOfRounds, numberOfEvents: numberOfEvents, roundLength: roundLength, events: eventsList)
         } catch let error   {
@@ -64,7 +62,7 @@ class ViewController: UIViewController, GameOverProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        addLabelGestures(toLabels: eventLabelArray())
+        //addLabelGestures(toLabels: eventLabelArray())
         startGameRound()
     }
     
@@ -82,54 +80,19 @@ class ViewController: UIViewController, GameOverProtocol {
         }
     }
     
-    //Adds gesture functionality to the event labels - Researched on StackOverflow
-    func addLabelGestures(toLabels labels: [UILabel]) {
-        for label in labels {
-            //Researched on Stack Overflow
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(touchFunction))
-            label.addGestureRecognizer(gesture)
-        }
-    }
-    
-    //Function called by the gesture recognizer, identifies gesture and assigns the correct URL
-    @objc func touchFunction(sender: UITapGestureRecognizer) throws -> Void   {
-        let labels = eventLabelArray()
-        var infoURL: String = ""
-        
-        for index in 0..<labels.count   {
-            if sender.view === labels[index]    {
-                infoURL = quizManager.eventSet[index].eventURL
-            }
-        }
-        guard let url =  URL(string: infoURL) else  {
-            return
-        }
-        let safariVC = SFSafariViewController(url: url)
-        self.present(safariVC, animated: true, completion: nil)
-    }
-    
-    //Returns an array of event labels
-    func eventLabelArray() -> [UILabel]  {
-        let labelSet: [UILabel] = [firstEventLabel,
-                                   secondEventLabel,
-                                   thirdEventLabel,
-                                   fourthEventLabel]
-        return labelSet
-    }
-    
     //Update labels with events
     func populateLables() -> Void   {
-        let labelSet = eventLabelArray()
-        for index in 0..<labelSet.count   {
-            labelSet[index].text = quizManager.eventSet[index].eventDescription
+        var index: Int = 0
+        for button in eventButtons  {
+            button.setTitle(quizManager.eventSet[index].eventDescription, for: .normal)
+            index += 1
         }
     }
     
     //Function called to enable or disable gesture recognizers
-    func enableGestures(isEnabled: Bool) -> Void {
-        let labels = eventLabelArray()
-        for label in labels {
-            label.isUserInteractionEnabled = isEnabled
+    func enableUserInteraction(isEnabled: Bool) -> Void {
+        for button in eventButtons  {
+            button.isUserInteractionEnabled = isEnabled
         }
     }
     
@@ -147,7 +110,7 @@ class ViewController: UIViewController, GameOverProtocol {
             quizManager.adjustCounter(decreaseBy: 1, isReset: false, roundLength: roundLength)
         } else  {
             stopTimer()
-            completeRound(timeUp: true)
+            completeRound(isTimeUp: true)
         }
     }
     
@@ -167,8 +130,18 @@ class ViewController: UIViewController, GameOverProtocol {
         startGameRound()
     }
     
+    //Display alert if the event has no URL associated with it
+    func showAlert(with title: String, message: String, alertStyle: UIAlertController.Style = .alert)    {
+        let alertController = UIAlertController.init(title: title, message: message, preferredStyle: alertStyle
+        )
+        
+        let okAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     //Function called when either the device is shaked or time runs out indicating the round is over
-    func completeRound(timeUp: Bool) -> Void  {
+    func completeRound(isTimeUp: Bool) -> Void  {
         let eventsAreInOrder = quizManager.checkAnswer()
         timerLabel.isHidden = true
         timerLabel.text = "0:59"
@@ -181,19 +154,19 @@ class ViewController: UIViewController, GameOverProtocol {
             nextRoundButton.setImage(UIImage(named: "next_round_fail.png"), for: .normal)
             soundManager.playSelectedSound(soundManager.wrongSound)
         }
-        if !timeUp  {
+        if !isTimeUp  {
             stopTimer()
         }
         //Updates UI elements and enables gestures on the event labels to call up wikipedia pages
         nextRoundButton.isHidden = false
-        enableGestures(isEnabled: true)
+        enableUserInteraction(isEnabled: true)
         roundMessageLabel.text = "Tap events to learn more"
     }
     
     ///Starts a round of the game and checks to see if the game is over before presenting the questions
     func startGameRound() -> Void   {
         //Disable gestures during the round
-        enableGestures(isEnabled: false)
+        enableUserInteraction(isEnabled: false)
         
         //Check to see if the game is complete or the round should be started
         if self.quizManager.isGameComplete()  {
@@ -268,6 +241,25 @@ class ViewController: UIViewController, GameOverProtocol {
         startGameRound()
     }
     
+    ///Checks sender and looks up URL for the event associated with the button
+    @IBAction func displayEventInfo(_ sender: UIButton) {
+        var eventURL: String = ""
+        guard let eventDescription = sender.title(for: .normal) else {
+            return
+        }
+        
+        for event in quizManager.eventSet   {
+            if eventDescription == event.eventDescription   {
+                eventURL = event.eventURL
+            }
+        }
+        guard let url =  URL(string: eventURL) else  {
+            showAlert(with: "Error", message: "Sorry, that event does not have a Wikipedia page.")
+            return
+        }
+        let safariVC = SFSafariViewController(url: url)
+        self.present(safariVC, animated: true, completion: nil)
+}
     ///Updates button UI based on when the button is pressed
     @IBAction func buttonPressed(_ sender: UIButton) {
         if sender === firstEventDownButton  {

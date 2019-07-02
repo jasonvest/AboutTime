@@ -4,281 +4,281 @@
 <dict>
 	<key>Item-30</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1945-09-02T07:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Victory_over_Japan_Day</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Victory in the Pacific Day</string>
 	</dict>
 	<key>Item-29</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<string>Aug 6, 1945 at 12:00:00 AM</string>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Atomic_bombings_of_Hiroshima_and_Nagasaki</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>The B-29 bomber Enola Gay Drops the First Atomic Bomb</string>
 	</dict>
 	<key>Item-28</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<string>May 8, 1945 at 12:00:00 AM</string>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Victory_in_Europe_Day</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Victory in Europe Day</string>
 	</dict>
 	<key>Item-27</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1945-04-16T07:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Battle_of_Berlin</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Battle of Berlin Begins</string>
 	</dict>
 	<key>Item-26</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1944-12-16T07:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Battle_of_the_Bulge</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Battle of the Bulge Begins</string>
 	</dict>
 	<key>Item-25</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1944-10-23T07:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Battle_of_Leyte_Gulf</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Battle of Leyte Gulf</string>
 	</dict>
 	<key>Item-24</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1944-09-17T07:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Operation_Market_Garden</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Operation Market Garden Begins</string>
 	</dict>
 	<key>Item-23</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1944-07-20T07:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/20_July_plot</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>July 20 Plot: Assassination Attempt on Hitler</string>
 	</dict>
 	<key>Item-22</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1944-06-06T07:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Normandy_landings</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Operation D-Day</string>
 	</dict>
 	<key>Item-21</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1944-01-27T07:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Siege_of_Leningrad</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>The Siege of Leningrad Ends</string>
 	</dict>
 	<key>Item-20</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1943-11-20T07:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Battle_of_Tarawa</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Battle of Tarawa Begins</string>
 	</dict>
 	<key>Item-19</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<string>Feb 19, 1943 at 12:00:00 AM</string>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Battle_of_Kasserine_Pass</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Battle of the Kasserine Pass Begins</string>
 	</dict>
 	<key>Item-18</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<string>Oct 23, 1942 at 12:00:00 AM</string>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Second_Battle_of_El_Alamein</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Second Battle of El Alamein Begins</string>
 	</dict>
 	<key>Item-17</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1942-07-01T07:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/First_Battle_of_El_Alamein</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>First Battle of El Alamein Begins</string>
 	</dict>
 	<key>Item-16</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1942-06-04T07:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Battle_of_Midway</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>The Battle of Midway Begins</string>
 	</dict>
 	<key>Item-15</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1942-04-18T07:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Doolittle_Raid</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Doolittle Raid on Japan</string>
 	</dict>
 	<key>Item-14</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1942-02-25T07:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Internment_of_Japanese_Americans</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Internment of Japanese-American Citizens Begins in U.S.</string>
 	</dict>
 	<key>Item-13</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1941-10-02T08:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Battle_of_Moscow</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Battle of Moscow Begins</string>
 	</dict>
 	<key>Item-12</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1941-09-08T08:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Siege_of_Leningrad</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>The Siege of Leningrad Begins</string>
 	</dict>
 	<key>Item-11</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1941-06-22T08:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Operation_Barbarossa</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Germany Invades the Soviet Union</string>
 	</dict>
 	<key>Item-5</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1941-05-10T08:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Rudolf_Hess</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Rudolf Hess is Captured in Scotland</string>
 	</dict>
 	<key>Item-4</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1941-03-11T08:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Lend-Lease</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>U.S. Lend-Lease Act is Signed</string>
 	</dict>
 	<key>Item-3</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1940-09-27T08:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Tripartite_Pact</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>The Tripartite Pact is Signed</string>
 	</dict>
 	<key>Item-2</key>
 	<dict>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1940-07-10T08:00:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Battle_of_Britain</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>The Battle of Britain Begins</string>
 	</dict>
 	<key>Item-1</key>
 	<dict>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Armistice_of_22_June_1940</string>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1940-06-22T08:00:00Z</date>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Franco-German Armistice Signed</string>
 	</dict>
 	<key>Item-10</key>
 	<dict>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Germany Invades Poland</string>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1939-09-01T12:45:00Z</date>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Invasion_of_Poland</string>
 	</dict>
 	<key>Item-9</key>
 	<dict>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/National_Registration_Act_1939</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>British National Registration Act</string>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1939-09-07T08:00:00Z</date>
 	</dict>
 	<key>Item-8</key>
 	<dict>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/SS_Athenia_(1922)</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Sinking of the SS Athenia</string>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1939-09-03T08:00:00Z</date>
 	</dict>
 	<key>Item-7</key>
 	<dict>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/German_submarine_U-27_(1936)</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>German Submarine U-27 Sunk</string>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1939-09-20T08:00:00Z</date>
 	</dict>
 	<key>Item-6</key>
 	<dict>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/German–Soviet_Frontier_Treaty</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>German-Soviet Frontier Treaty Signed</string>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1939-09-28T08:00:00Z</date>
 	</dict>
 	<key>Item-0</key>
 	<dict>
-		<key>url</key>
+		<key>eventURL</key>
 		<string>https://en.wikipedia.org/wiki/Dunkirk_evacuation</string>
-		<key>event</key>
+		<key>eventDescription</key>
 		<string>Operation Dynamo: Allied Evacuation of Dunkirk</string>
-		<key>date</key>
+		<key>eventDate</key>
 		<date>1940-05-26T08:00:00Z</date>
 	</dict>
 </dict>

@@ -8,7 +8,6 @@
 
 import Foundation
 import GameKit
-import AudioToolbox
 
 ///Enum setting up a group for the trivia questions, allows for the introduction of other trivia files
 enum EventGroup: String {
@@ -34,15 +33,6 @@ protocol TimelineQuiz   {
     var events: [HistoricalEvent] { get set }
 }
 
-///Protocol for the game sounds
-protocol GameSound {
-    var wrongSound: SystemSoundID { get set }
-    var correctSound: SystemSoundID { get set }
-    var perfectGameSound: SystemSoundID { get set }
-    var wompSound: SystemSoundID { get set }
-    func playSelectedSound(_ sound: SystemSoundID) -> Void
-}
-
 ///Protocol for the quiz manager
 protocol QuizManager    {
     var numberOfRounds: Int { get set }
@@ -63,38 +53,10 @@ protocol QuizManager    {
 }
 
 ///Struct for modeling Historical Event data
-struct Event: HistoricalEvent    {
+struct Event: HistoricalEvent, Codable   {
     let eventDescription: String
     let eventDate: Date
     let eventURL: String
-}
-
-///Helper class to conver the plist data
-class PlistConverter    {
-    static func dictionary(fromFile name: String, ofType type: String) throws -> [String : AnyObject]    {
-        guard let path = Bundle.main.path(forResource: name, ofType: type) else {
-            throw EventError.invalidResource
-        }
-        guard let dictionary = NSDictionary(contentsOfFile: path) as? [String : AnyObject] else {
-            throw EventError.conversionError
-        }
-        return dictionary
-    }
-}
-
-///Helper class that loads the data from the plist
-class EventLoader   {
-    static func quizEvents(fromDictionary dictionary: [String : AnyObject]) throws -> [HistoricalEvent] {
-        var eventsList: [HistoricalEvent] = []
-        for (_, value) in dictionary  {
-            if let eventDictionary = value as? [String : Any], let eventDescription = eventDictionary["event"] as? String, let eventDate = eventDictionary["date"] as? Date, let eventURL = eventDictionary["url"] as? String {
-                let event = Event(eventDescription: eventDescription, eventDate: eventDate, eventURL: eventURL)
-                
-                eventsList.append(event)
-            }
-        }
-        return eventsList
-    }
 }
 
 ///Quiz class to hold the events
@@ -104,37 +66,6 @@ class WorldWarIIQuiz: TimelineQuiz  {
         self.events = events
     }
 }
-
-///SoundManager struct
-struct SoundManager: GameSound {
-    var wrongSound: SystemSoundID = 0
-    var correctSound: SystemSoundID = 0
-    var perfectGameSound: SystemSoundID = 0
-    var wompSound: SystemSoundID = 0
-    
-    init() {
-        let pathWrongSound = Bundle.main.path(forResource: "IncorrectBuzz", ofType: "wav")
-        let soundUrlWrongSound = URL(fileURLWithPath: pathWrongSound!)
-        AudioServicesCreateSystemSoundID(soundUrlWrongSound as CFURL, &wrongSound)
-        
-        let pathCorrectSound = Bundle.main.path(forResource: "CorrectDing", ofType: "wav")
-        let soundUrlCorrectSound = URL(fileURLWithPath: pathCorrectSound!)
-        AudioServicesCreateSystemSoundID(soundUrlCorrectSound as CFURL, &correctSound)
-        
-        let pathPerfectGameSound = Bundle.main.path(forResource: "PerfectGameSound", ofType: "wav")
-        let soundUrlPerfectGameSound = URL(fileURLWithPath: pathPerfectGameSound!)
-        AudioServicesCreateSystemSoundID(soundUrlPerfectGameSound as CFURL, &perfectGameSound)
-        
-        let pathWompSound = Bundle.main.path(forResource: "WompSound", ofType: "wav")
-        let soundUrlWompSound = URL(fileURLWithPath: pathWompSound!)
-        AudioServicesCreateSystemSoundID(soundUrlWompSound as CFURL, &wompSound)
-    }
-    //Play the requested sound
-    func playSelectedSound(_ sound: SystemSoundID) -> Void {
-        AudioServicesPlaySystemSound(sound)
-    }
-}
-
 
 ///Quiz manager class
 class WorldWarIIQuizManager: QuizManager    {

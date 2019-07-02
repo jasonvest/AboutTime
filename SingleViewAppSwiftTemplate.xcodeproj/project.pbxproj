@@ -19,6 +19,8 @@
 		3E35EA7E22C9066E00F0B32F /* CorrectDing.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E35EA7D22C9066E00F0B32F /* CorrectDing.wav */; };
 		3E35EA8022C9068000F0B32F /* WompSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E35EA7F22C9068000F0B32F /* WompSound.wav */; };
 		3E35EA8222C9068A00F0B32F /* PerfectGameSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E35EA8122C9068A00F0B32F /* PerfectGameSound.wav */; };
+		3E789F8722C94B8A00AC0815 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E789F8622C94B8A00AC0815 /* SoundManager.swift */; };
+		3E789F8922C94BE400AC0815 /* FileLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E789F8822C94BE400AC0815 /* FileLoader.swift */; };
 		3ECFC89122B84CE400F74644 /* WorldWarIIEvents.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3ECFC89022B84CE400F74644 /* WorldWarIIEvents.plist */; };
 		3ECFC89322B85E0200F74644 /* AboutTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECFC89222B85E0200F74644 /* AboutTime.swift */; };
 /* End PBXBuildFile section */
@@ -59,6 +61,8 @@
 		3E35EA7D22C9066E00F0B32F /* CorrectDing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CorrectDing.wav; sourceTree = "<group>"; };
 		3E35EA7F22C9068000F0B32F /* WompSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WompSound.wav; sourceTree = "<group>"; };
 		3E35EA8122C9068A00F0B32F /* PerfectGameSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PerfectGameSound.wav; sourceTree = "<group>"; };
+		3E789F8622C94B8A00AC0815 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		3E789F8822C94BE400AC0815 /* FileLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLoader.swift; sourceTree = "<group>"; };
 		3ECFC89022B84CE400F74644 /* WorldWarIIEvents.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WorldWarIIEvents.plist; sourceTree = "<group>"; };
 		3ECFC89222B85E0200F74644 /* AboutTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +128,8 @@
 				3ECFC89222B85E0200F74644 /* AboutTime.swift */,
 				3E35EA7922C7C1FE00F0B32F /* FinalScoreController.swift */,
 				3E35EA7B22C9064E00F0B32F /* IncorrectBuzz.wav */,
+				3E789F8622C94B8A00AC0815 /* SoundManager.swift */,
+				3E789F8822C94BE400AC0815 /* FileLoader.swift */,
 			);
 			path = SingleViewAppSwiftTemplate;
 			sourceTree = "<group>";
@@ -286,10 +292,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E789F8922C94BE400AC0815 /* FileLoader.swift in Sources */,
 				3A8AADCB1DF9B85E00A2B931 /* ViewController.swift in Sources */,
 				3ECFC89322B85E0200F74644 /* AboutTime.swift in Sources */,
 				3A8AADC91DF9B85E00A2B931 /* AppDelegate.swift in Sources */,
 				3E35EA7A22C7C1FE00F0B32F /* FinalScoreController.swift in Sources */,
+				3E789F8722C94B8A00AC0815 /* SoundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
