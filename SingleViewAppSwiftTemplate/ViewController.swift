@@ -46,11 +46,7 @@ class ViewController: UIViewController, GameOverProtocol {
     
     required init?(coder aDecoder: NSCoder) {
         do  {
-            let dictionary = try PlistConverter.dictionary(fromFile: EventGroup.WorldWarIIEvents.rawValue, ofType: "plist")
-            
-            let eventsList = try EventLoader.quizEvents(fromDictionary: dictionary)
-            
-           // try Test.quizEvents(fromFile: EventGroup.WorldWarIIEvents.rawValue, ofType: "plist")
+            let eventsList = try EventLoader.quizEvents(fromFile: EventGroup.WorldWarIIEvents.rawValue, ofType: "plist")
             
             self.quizManager = WorldWarIIQuizManager.init(numberOfRounds: numberOfRounds, numberOfEvents: numberOfEvents, roundLength: roundLength, events: eventsList)
         } catch let error   {
@@ -62,7 +58,12 @@ class ViewController: UIViewController, GameOverProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        //addLabelGestures(toLabels: eventLabelArray())
+        
+        //Set wrapping options on buttons
+        for eventButton in eventButtons {
+            eventButton.titleLabel?.numberOfLines = 0
+            eventButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+        }
         startGameRound()
     }
     
@@ -91,8 +92,8 @@ class ViewController: UIViewController, GameOverProtocol {
     
     //Function called to enable or disable gesture recognizers
     func enableUserInteraction(isEnabled: Bool) -> Void {
-        for button in eventButtons  {
-            button.isUserInteractionEnabled = isEnabled
+        for eventButton in eventButtons  {
+            eventButton.isUserInteractionEnabled = isEnabled
         }
     }
     
