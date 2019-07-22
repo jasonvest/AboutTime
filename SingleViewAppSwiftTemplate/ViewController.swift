@@ -254,10 +254,12 @@ class ViewController: UIViewController, GameOverProtocol {
                 eventURL = event.eventURL
             }
         }
+        
         guard let url =  URL(string: eventURL) else  {
             showAlert(with: "Error", message: "Sorry, that event does not have a Wikipedia page.")
             return
         }
+        
         let safariVC = SFSafariViewController(url: url)
         self.present(safariVC, animated: true, completion: nil)
 }
